@@ -83,6 +83,7 @@ def connect_plc():
     global plc_client, plc_vars, plc_connected_once
 
     try:
+        time.sleep(1)
         client = Client(PLC_URL)
         client.connect()
     except Exception as e:
@@ -281,7 +282,7 @@ def check_camera():
 
 def cv_handling(frame_bgr):
     """
-    Обработка изображения.
+    Обработка изображения. 
     Сейчас пример: серый + размытие.
     """
     gray = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2GRAY)
@@ -297,7 +298,6 @@ def process_and_classify(frame_bgr):
     """
     img = cv_handling(frame_bgr)
     mean_val = float(np.mean(img))
-
     # простая заглушка:
     # яркий объект – ОК, тёмный – брак
     if mean_val > 100:
@@ -442,8 +442,8 @@ def main():
         while True:
             time.sleep(1)
             # для контроля можно периодически смотреть состояние флага
-            val = safe_read("bPlcReady")
-            log(f"bPlcReady = {val}")
+            val = safe_read("bStartGrab")
+            log(f"bStartGrab = {val}")
     except KeyboardInterrupt:
         log("⏹ Остановка программы...")
         with plc_lock:
