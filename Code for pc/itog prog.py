@@ -3,118 +3,114 @@ import numpy as np
 import time
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from opcua import Client, ua
 from datetime import timedelta
 import os
 
-# ------------------ ЛОГИ ------------------
+from opcua import Client, ua
 
-# Путь к папке и файлу логов
+
+# ============================================================
+#  ЛОГИ (консоль + файл)
+# ============================================================
+
 LOG_DIR = r"C:\Users\admin\Documents\halvaRF"
 LOG_FILE = os.path.join(LOG_DIR, "halva_log.txt")
-
-# Создадим каталог, если его нет
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# Время старта программы
 START_TIME = time.time()
-
-# Блокировка для потокобезопасной записи в файл
 log_lock = threading.Lock()
 
-
 def log(message: str):
-    """
-    Лог с отметкой времени от старта.
-    Пишет в консоль и в файл.
-    Формат: [00:00:05.123] текст
-    """
     dt = time.time() - START_TIME
     td = str(timedelta(seconds=dt))
     if "." in td:
         t_main, t_ms = td.split(".")
-        td = f"{t_main}.{t_ms[:3]}"  # миллисекунды
-
+        td = f"{t_main}.{t_ms[:3]}"
     line = f"[{td}] {message}"
-
-    # вывод в консоль
     print(line)
-
-    # запись в файл
     with log_lock:
         try:
             with open(LOG_FILE, "a", encoding="utf-8") as f:
                 f.write(line + "\n")
         except Exception as e:
-            # если даже лог не записался — просто скажем в консоль
             print(f"[LOG ERROR] Не удалось записать в файл: {e}")
 
 
-# ------------------ НАСТРОЙКИ ------------------
+# ============================================================
+#  НАСТРОЙКИ
+# ============================================================
 
-PLC_URL = "opc.tcp://172.16.3.186:4840"   # адрес OPC UA сервера ПЛК
-HTTP_PORT = 8000                          # порт веб-сервера
-CAM_INDEX = 0                             # номер камеры в OpenCV
+PLC_URL = "opc.tcp://172.16.3.186:4840"
+HTTP_PORT = 8000
+CAM_INDEX = 0
+
+# Реальные ноды (как ты нашёл сканером)
+NODE_BASE = "ns=4;s=|var|PLC210 OPC-UA.Application.TargetVars."
+
+RECONNECT_DELAY_SEC = 3.0
 
 
-# ------------------ ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ------------------
+# ============================================================
+#  ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+# ============================================================
 
-cap = None                 # объект камеры
-last_jpeg = None           # последний JPEG для браузера
-last_frame = None          # последний сырой кадр BGR (для анализа)
+# камера
+cap = None
+last_jpeg = None
+last_frame = None
 frame_lock = threading.Lock()
 
-plc_client = None          # объект OPC UA клиента
-plc_vars = {}              # словарь узлов TargetVars
+# plc opcua
+plc_client = None
+plc_vars = {}
 plc_lock = threading.Lock()
-plc_connected_once = False # флаг: было ли хоть одно успешное подключение к ПЛК
+plc_connected_once = False
+
+# handshake state
+pc_busy = False                  # ПК сейчас обрабатывает изделие
+ack_sent = False                 # ACK (bStartGrab=True) уже отправлен для текущего события
+current_job_id = 0               # просто для логов
 
 
 # ============================================================
-#  ПЛК  (OPC UA)
+#  OPC UA (ПЛК)
 # ============================================================
 
-def connect_plc():
+def connect_plc() -> bool:
     """
-    ОДНОКРАТНАЯ попытка подключиться к ПЛК и получить узлы TargetVars.
-    НИКОГДА не кидает исключения наружу.
-    Возвращает True/False (успех/ошибка).
+    Одна попытка подключения. Не кидает исключений наружу.
+    Возвращает True при успехе.
     """
     global plc_client, plc_vars, plc_connected_once
 
     try:
-        time.sleep(1)
         client = Client(PLC_URL)
         client.connect()
     except Exception as e:
-        log(f"⚠ Не удалось подключиться к ПЛК по OPC UA: {e}")
+        log(f"⚠ ПЛК: нет подключения по OPC UA: {e}")
         plc_client = None
         plc_vars = {}
         return False
 
-    # если подключились — один раз сообщаем
+    # Сообщение о подключении
     if not plc_connected_once:
         log("✅ ПЛК: подключение по OPC UA выполнено")
         plc_connected_once = True
     else:
-        log("🔄 ПЛК: связь с ПЛК восстановлена")
-
-    base = "ns=4;s=|var|PLC210 OPC-UA.Application.TargetVars."
+        log("🔄 ПЛК: связь восстановлена")
 
     try:
         vars_map = {
-            "bNewProduct":   client.get_node(base + "bNewProduct"),
-            "bPlcReady":     client.get_node(base + "bPlcReady"),
-            "bStartGrab":    client.get_node(base + "bStartGrab"),
-            "iPcResult":     client.get_node(base + "iPcResult"),
-            "uiPcErrorCode": client.get_node(base + "uiPcErrorCode"),
+            "bNewProduct":   client.get_node(NODE_BASE + "bNewProduct"),
+            "bPlcReady":     client.get_node(NODE_BASE + "bPlcReady"),
+            "bStartGrab":    client.get_node(NODE_BASE + "bStartGrab"),
+            "iPcResult":     client.get_node(NODE_BASE + "iPcResult"),
+            "uiPcErrorCode": client.get_node(NODE_BASE + "uiPcErrorCode"),
         }
-
-        # пробное чтение, чтобы убедиться, что ноды живые
+        # Пробное чтение
         _ = vars_map["bPlcReady"].get_value()
-
     except Exception as e:
-        log(f"⚠ Подключились к ПЛК, но не удалось получить/прочитать ноды: {e}")
+        log(f"⚠ ПЛК: подключился, но ноды не читаются: {e}")
         try:
             client.disconnect()
         except Exception:
@@ -123,16 +119,12 @@ def connect_plc():
         plc_vars = {}
         return False
 
-    # если дошли сюда — всё хорошо
     plc_client = client
     plc_vars = vars_map
     return True
 
 
 def _default_value(name: str):
-    """
-    Значение по умолчанию, когда ПЛК недоступен.
-    """
     if name in ("bNewProduct", "bPlcReady", "bStartGrab"):
         return False
     if name == "iPcResult":
@@ -142,115 +134,57 @@ def _default_value(name: str):
     return None
 
 
-def safe_read(name):
+def safe_read(name: str):
     """
-    Безопасное чтение переменной ПЛК.
-    Никогда не бросает исключений.
-    При отсутствии связи возвращает значение по умолчанию
-    и раз в ~3 сек пытается переподключиться.
+    Безопасное чтение. Не падает. При потере связи — переподключение.
     """
     global plc_client
 
     with plc_lock:
-        # если ещё не подключались или соединение уже закрыто
         if plc_client is None:
-            ok = connect_plc()
-            if not ok:
-                # нет связи — вернём дефолт
+            if not connect_plc():
                 return _default_value(name)
 
         try:
             return plc_vars[name].get_value()
         except Exception as e:
-            log(f"⚠ Ошибка чтения {name} из ПЛК: {e}")
-            # считаем, что связь потеряна
+            log(f"⚠ ПЛК: ошибка чтения {name}: {e}")
             try:
                 plc_client.disconnect()
             except Exception:
                 pass
             plc_client = None
             plc_vars.clear()
-            # небольшая пауза перед следующей попыткой
-            time.sleep(3.0)
+            time.sleep(RECONNECT_DELAY_SEC)
             return _default_value(name)
 
 
-def safe_write(name, value, vtype):
+def safe_write(name: str, value, vtype):
     """
-    Безопасная запись переменной ПЛК.
-    Если связи нет — пишет предупреждение, но программу не роняет.
+    Безопасная запись. Не падает. При потере связи — переподключение.
     """
     global plc_client
 
     with plc_lock:
         if plc_client is None:
-            # пробуем переподключиться
-            ok = connect_plc()
-            if not ok:
-                log(f"⚠ Нет связи с ПЛК, не могу записать {name}")
-                time.sleep(3.0)
-                return
+            if not connect_plc():
+                log(f"⚠ ПЛК: нет связи, не могу записать {name}")
+                time.sleep(RECONNECT_DELAY_SEC)
+                return False
 
         try:
-            var = ua.Variant(value, vtype)
-            plc_vars[name].set_value(var)
+            plc_vars[name].set_value(ua.Variant(value, vtype))
+            return True
         except Exception as e:
-            log(f"⚠ Ошибка записи {name} в ПЛК: {e}")
+            log(f"⚠ ПЛК: ошибка записи {name}: {e}")
             try:
                 plc_client.disconnect()
             except Exception:
                 pass
             plc_client = None
             plc_vars.clear()
-            time.sleep(3.0)
-
-
-def plc_logic_loop():
-    """
-    Основной цикл логики ПК ↔ ПЛК.
-    Ждём bPlcReady/bNewProduct, берём кадр, считаем результат, пишем в ПЛК.
-    Даже при потере связи не вылетает — safe_read/safe_write всё ловят.
-    """
-    log("▶ Цикл обмена с ПЛК запущен")
-
-    busy = False  # внутренний флаг: сейчас идёт обработка
-
-    while True:
-        try:
-            b_ready = safe_read("bPlcReady")
-            b_new   = safe_read("bNewProduct")
-
-            # новое изделие и ПЛК говорит "готов"
-            if b_ready and b_new and not busy:
-                busy = True
-                log("📷 Новый объект под камерой, начинаю обработку")
-
-                safe_write("bStartGrab", True, ua.VariantType.Boolean)
-                safe_write("uiPcErrorCode", 0, ua.VariantType.UInt16)
-
-                # берём последний кадр
-                with frame_lock:
-                    frame = None if last_frame is None else last_frame.copy()
-
-                if frame is None:
-                    log("❌ Нет кадра с камеры для анализа")
-                    safe_write("uiPcErrorCode", 10, ua.VariantType.UInt16)
-                    safe_write("iPcResult", 0, ua.VariantType.Int16)
-                else:
-                    # обработка кадра и вычисление результата
-                    result_code = process_and_classify(frame)
-                    safe_write("iPcResult", result_code, ua.VariantType.Int16)
-                    log(f"✅ Результат анализа отправлен в ПЛК: {result_code}")
-
-                safe_write("bStartGrab", False, ua.VariantType.Boolean)
-                busy = False
-
-            time.sleep(0.05)
-
-        except Exception as e:
-            # сюда вообще не должны попадать, но на всякий случай
-            log(f"⚠ Неожиданная ошибка в цикле обмена с ПЛК: {e}")
-            time.sleep(1.0)
+            time.sleep(RECONNECT_DELAY_SEC)
+            return False
 
 
 # ============================================================
@@ -258,7 +192,6 @@ def plc_logic_loop():
 # ============================================================
 
 def initial_cam():
-    """Первое подключение к камере."""
     global cap
     cap = cv2.VideoCapture(CAM_INDEX)
     if not cap.isOpened():
@@ -269,7 +202,6 @@ def initial_cam():
 
 
 def check_camera():
-    """Проверка и автоматическое переподключение камеры."""
     global cap
     while cap is None or not cap.isOpened():
         log("🔄 Камера недоступна, пытаюсь подключить...")
@@ -281,57 +213,42 @@ def check_camera():
 
 
 def cv_handling(frame_bgr):
-    """
-    Обработка изображения. 
-    Сейчас пример: серый + размытие.
-    """
+    # Пример обработки
     gray = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
     return blur
 
 
-def process_and_classify(frame_bgr):
+def process_and_classify(frame_bgr) -> int:
     """
-    Логика анализа кадра и выдача кода:
-    1 – ОК, 2 – брак, 0 – нет решения.
-    Сейчас пример: по средней яркости.
+    Вернуть:
+      1 = ОК
+      2 = БРАК
+      0 = нет решения/ошибка
     """
     img = cv_handling(frame_bgr)
     mean_val = float(np.mean(img))
-    # простая заглушка:
-    # яркий объект – ОК, тёмный – брак
-    if mean_val > 100:
-        return 1  # ОК
-    else:
-        return 2  # брак
+
+    # Заглушка
+    return 1 if mean_val > 100 else 2
 
 
 def camera_loop():
-    """
-    Поток камеры: читает кадр, обрабатывает для веба,
-    сохраняет последний кадр и JPEG.
-    При потере камеры выполняется автоматическое переподключение.
-    """
     global cap, last_jpeg, last_frame
 
     JPEG_QUALITY = 80
-
-    # Первое подключение
     check_camera()
 
     while True:
-        # если камера отсутствует — пробуем переподключить
         if cap is None or not cap.isOpened():
             log("🔄 Камера недоступна, переподключаю...")
             check_camera()
-            time.sleep(1)
+            time.sleep(1)  # важно: не грузить CPU
             continue
 
-        # пробуем прочитать кадр
         ret, frame = cap.read()
-
         if not ret or frame is None:
-            log("⚠ Не удалось прочитать кадр — камера возможно отключилась")
+            log("⚠ Камера: не удалось прочитать кадр — переподключаю")
             try:
                 cap.release()
             except Exception:
@@ -340,29 +257,20 @@ def camera_loop():
             time.sleep(1)
             continue
 
-        # сохраняем сырой кадр для анализа
         with frame_lock:
             last_frame = frame.copy()
 
-        # для веб — обработанный вариант
         processed = cv_handling(frame)
+        ok, jpeg = cv2.imencode(".jpg", processed, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY])
+        if ok:
+            with frame_lock:
+                last_jpeg = jpeg.tobytes()
 
-        ok, jpeg = cv2.imencode(
-            ".jpg", processed, [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY]
-        )
-        if not ok:
-            log("⚠ Ошибка JPEG-кодирования")
-            time.sleep(0.2)
-            continue
-
-        with frame_lock:
-            last_jpeg = jpeg.tobytes()
-
-        time.sleep(0.1)   # частота обновления картинки
+        time.sleep(0.1)
 
 
 # ============================================================
-#  ВЕБ-СЕРВЕР
+#  ВЕБ (просмотр последнего кадра)
 # ============================================================
 
 def web_loop():
@@ -413,12 +321,85 @@ def web_loop():
                 self.wfile.write(HTML_PAGE.encode("utf-8"))
 
         def log_message(self, format, *args):
-            # глушим стандартный http.server лог
             return
 
     server = HTTPServer(("0.0.0.0", HTTP_PORT), Handler)
-    log(f"🌐 Веб-сервер запущен: http://localhost:{HTTP_PORT}")
+    log(f"🌐 Веб-сервер: http://localhost:{HTTP_PORT}")
     server.serve_forever()
+
+
+# ============================================================
+#  HANDSHAKE: основной цикл ПК ↔ ПЛК
+# ============================================================
+
+def plc_handshake_loop():
+    """
+    Handshake без пропусков:
+    - ждём bPlcReady && bNewProduct
+    - сразу ACK: bStartGrab=True
+    - делаем снимок и анализ
+    - пишем iPcResult
+    - сбрасываем bStartGrab=False (готово)
+    """
+    global pc_busy, ack_sent, current_job_id
+
+    log("▶ Handshake цикл ПК↔ПЛК запущен")
+
+    while True:
+        try:
+            b_ready = bool(safe_read("bPlcReady"))
+            b_new = bool(safe_read("bNewProduct"))
+
+            # Если ПЛК не готов или нет нового продукта — сбрасываем локальные флаги ожидания
+            # (это помогает корректно пережить уход изделия)
+            if not b_ready or not b_new:
+                if not pc_busy:
+                    ack_sent = False
+                time.sleep(0.02)
+                continue
+
+            # Событие: изделие готово и новое
+            if b_ready and b_new and (not pc_busy):
+                pc_busy = True
+                current_job_id += 1
+                job = current_job_id
+                log(f"📷 JOB#{job}: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)")
+
+                # 1) ACK сразу
+                if safe_write("bStartGrab", True, ua.VariantType.Boolean):
+                    ack_sent = True
+                    log(f"📌 JOB#{job}: ACK отправлен (bStartGrab=1)")
+
+                # 2) берём кадр
+                with frame_lock:
+                    frame = None if last_frame is None else last_frame.copy()
+
+                if frame is None:
+                    log(f"❌ JOB#{job}: нет кадра для анализа")
+                    safe_write("uiPcErrorCode", 10, ua.VariantType.UInt16)
+                    safe_write("iPcResult", 0, ua.VariantType.Int16)
+                else:
+                    # 3) анализ
+                    result_code = process_and_classify(frame)
+
+                    # 4) запись результата
+                    safe_write("uiPcErrorCode", 0, ua.VariantType.UInt16)
+                    safe_write("iPcResult", int(result_code), ua.VariantType.Int16)
+                    log(f"✅ JOB#{job}: результат отправлен в ПЛК iPcResult={result_code}")
+
+                # 5) завершение: сброс ACK
+                safe_write("bStartGrab", False, ua.VariantType.Boolean)
+                log(f"🏁 JOB#{job}: завершено (bStartGrab=0)")
+
+                pc_busy = False
+                time.sleep(0.02)
+                continue
+
+            time.sleep(0.02)
+
+        except Exception as e:
+            log(f"⚠ Ошибка в handshake цикле: {e}")
+            time.sleep(1.0)
 
 
 # ============================================================
@@ -426,24 +407,24 @@ def web_loop():
 # ============================================================
 
 def main():
-    # первая попытка подключения к ПЛК (если не получится – потоки всё равно стартуют)
+    # попытка подключения к ПЛК (если не получится — дальше всё равно стартуем)
     connect_plc()
 
     t_web = threading.Thread(target=web_loop, daemon=True)
     t_cam = threading.Thread(target=camera_loop, daemon=True)
-    t_plc = threading.Thread(target=plc_logic_loop, daemon=True)
+    t_plc = threading.Thread(target=plc_handshake_loop, daemon=True)
 
     t_web.start()
     t_cam.start()
     t_plc.start()
 
-    log("▶ Главный цикл запущен. Нажми Ctrl+C для выхода.")
+    log("▶ Программа запущена. Ctrl+C для выхода.")
+
     try:
         while True:
             time.sleep(1)
-            # для контроля можно периодически смотреть состояние флага
-            val = safe_read("bStartGrab")
-            log(f"bStartGrab = {val}")
+            # редкий “пульс” в лог
+            log(f"STATUS: plcReady={safe_read('bPlcReady')} new={safe_read('bNewProduct')} startGrab={safe_read('bStartGrab')}")
     except KeyboardInterrupt:
         log("⏹ Остановка программы...")
         with plc_lock:
