@@ -8,15 +8,22 @@
   <TypeList>
     <TypeSimple name="T_BOOL" size="1" swapsize="0" typeclass="Bool" iecname="BOOL" />
     <TypeSimple name="T_INT" size="2" swapsize="2" typeclass="Int" iecname="INT" />
+    <TypeSimple name="T_STRING_255_" size="256" swapsize="0" typeclass="String" iecname="STRING(255)" />
     <TypeSimple name="T_UINT" size="2" swapsize="2" typeclass="UInt" iecname="UINT" />
+    <TypeArray name="T_ARRAY__0__9__OF_STRING_255_" size="2560" nativesize="2560" typeclass="Array" iecname="ARRAY [0..9] OF STRING(255)" basetype="T_STRING_255_">
+      <ArrayDim minrange="0" maxrange="9" />
+    </TypeArray>
   </TypeList>
   <NodeList>
     <Node name="Application">
       <Node name="TargetVars">
+        <Node name="aLog" type="T_ARRAY__0__9__OF_STRING_255_" access="ReadWrite" />
+        <Node name="bLogNew" type="T_BOOL" access="ReadWrite" />
         <Node name="bNewProduct" type="T_BOOL" access="ReadWrite" />
         <Node name="bPlcReady" type="T_BOOL" access="ReadWrite" />
         <Node name="bStartGrab" type="T_BOOL" access="ReadWrite" />
         <Node name="iPcResult" type="T_INT" access="ReadWrite" />
+        <Node name="sLogNew" type="T_STRING_255_" access="ReadWrite" />
         <Node name="uiPcErrorCode" type="T_UINT" access="ReadWrite" />
       </Node>
     </Node>

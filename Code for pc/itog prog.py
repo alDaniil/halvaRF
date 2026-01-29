@@ -20,20 +20,51 @@ os.makedirs(LOG_DIR, exist_ok=True)
 START_TIME = time.time()
 log_lock = threading.Lock()
 
-def log(message: str):
+def log(message: str, to_plc: bool = True):
+    global plc_log_toggle
     dt = time.time() - START_TIME
     td = str(timedelta(seconds=dt))
     if "." in td:
         t_main, t_ms = td.split(".")
         td = f"{t_main}.{t_ms[:3]}"
+
     line = f"[{td}] {message}"
     print(line)
+
     with log_lock:
         try:
             with open(LOG_FILE, "a", encoding="utf-8") as f:
                 f.write(line + "\n")
         except Exception as e:
             print(f"[LOG ERROR] Не удалось записать в файл: {e}")
+
+    # ----  Отправка в ПЛК (только если нужно) ----
+    if not to_plc:
+        return
+
+    # ВАЖНО: не блокируемся на plc_lock (иначе возможен дедлок с safe_read/safe_write)
+    if not plc_lock.acquire(blocking=False):
+        return
+
+    try:
+        if plc_client is None or not plc_vars:
+            return
+        if "sLogNew" not in plc_vars or "bLogNew" not in plc_vars:
+            return
+
+        # ограничим длину для STRING(255)
+        plc_line = line[:250]
+
+        try:
+            plc_vars["sLogNew"].set_value(ua.Variant(plc_line, ua.VariantType.String))
+            plc_log_toggle = not plc_log_toggle
+            plc_vars["bLogNew"].set_value(ua.Variant(plc_log_toggle, ua.VariantType.Boolean))
+        except Exception:
+            # тут НЕЛЬЗЯ вызывать log(), чтобы не уйти в рекурсию
+            return
+    finally:
+        plc_lock.release()
+
 
 
 # ============================================================
@@ -65,6 +96,7 @@ plc_client = None
 plc_vars = {}
 plc_lock = threading.Lock()
 plc_connected_once = False
+plc_log_toggle = False  # для переключения TargetVars.bLogNew
 
 # handshake state
 pc_busy = False                  # ПК сейчас обрабатывает изделие
@@ -106,6 +138,8 @@ def connect_plc() -> bool:
             "bStartGrab":    client.get_node(NODE_BASE + "bStartGrab"),
             "iPcResult":     client.get_node(NODE_BASE + "iPcResult"),
             "uiPcErrorCode": client.get_node(NODE_BASE + "uiPcErrorCode"),
+            "bLogNew":       client.get_node(NODE_BASE + "bLogNew"),
+            "sLogNew":       client.get_node(NODE_BASE + "sLogNew"),
         }
         # Пробное чтение
         _ = vars_map["bPlcReady"].get_value()
@@ -198,7 +232,7 @@ def initial_cam():
         log("❌ Камера не обнаружена")
         cap = None
     else:
-        log("✅ Камера подключена")
+        log(" Камера подключена")
 
 
 def check_camera():
@@ -424,7 +458,7 @@ def main():
         while True:
             time.sleep(1)
             # редкий “пульс” в лог
-            log(f"STATUS: plcReady={safe_read('bPlcReady')} new={safe_read('bNewProduct')} startGrab={safe_read('bStartGrab')}")
+            log(f"STATUS: plcReady={safe_read('bPlcReady')}")
     except KeyboardInterrupt:
         log("⏹ Остановка программы...")
         with plc_lock:
