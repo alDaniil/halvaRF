@@ -8,6 +8,7 @@
   <TypeList>
     <TypeSimple name="T_BOOL" size="1" swapsize="0" typeclass="Bool" iecname="BOOL" />
     <TypeSimple name="T_INT" size="2" swapsize="2" typeclass="Int" iecname="INT" />
+    <TypeSimple name="T_REAL" size="4" swapsize="4" typeclass="Real" iecname="REAL" />
     <TypeSimple name="T_STRING_255_" size="256" swapsize="0" typeclass="String" iecname="STRING(255)" />
     <TypeSimple name="T_UINT" size="2" swapsize="2" typeclass="UInt" iecname="UINT" />
     <TypeArray name="T_ARRAY__0__9__OF_STRING_255_" size="2560" nativesize="2560" typeclass="Array" iecname="ARRAY [0..9] OF STRING(255)" basetype="T_STRING_255_">
@@ -16,6 +17,10 @@
   </TypeList>
   <NodeList>
     <Node name="Application">
+      <Node name="PLC_PRG">
+        <Node name="chislo" type="T_REAL" access="ReadWrite" />
+        <Node name="xPartAtCamera" type="T_BOOL" access="ReadWrite" />
+      </Node>
       <Node name="TargetVars">
         <Node name="aLog" type="T_ARRAY__0__9__OF_STRING_255_" access="ReadWrite" />
         <Node name="bLogNew" type="T_BOOL" access="ReadWrite" />

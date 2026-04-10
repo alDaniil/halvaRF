@@ -1020,3 +1020,614 @@
 [0:10:41.298] STATUS: plcReady=False
 [0:10:42.317] STATUS: plcReady=False
 [0:10:42.328] ⚠ Камера: не удалось прочитать кадр — переподключаю
+[0:00:04.010] ⚠ ПЛК: нет подключения по OPC UA: timed out
+[0:00:04.053] 🔄 Камера недоступна, пытаюсь подключить...
+[0:00:04.067] ▶ Handshake цикл ПК↔ПЛК запущен
+[0:00:04.067] ▶ Программа запущена. Ctrl+C для выхода.
+[0:00:04.070] 🌐 Веб-сервер: http://localhost:8000
+[0:00:05.976]  Камера подключена
+[0:00:09.092] ⚠ ПЛК: нет подключения по OPC UA: 
+[0:00:13.095] ⚠ ПЛК: нет подключения по OPC UA: timed out
+[0:00:13.096] STATUS: plcReady=False
+[0:00:18.189] ⚠ ПЛК: нет подключения по OPC UA: 
+[0:00:24.353] ⚠ ПЛК: нет подключения по OPC UA: 
+[0:00:24.354] STATUS: plcReady=False
+[0:00:00.009] ✅ ПЛК: подключение по OPC UA выполнено
+[0:00:00.015] 🔄 Камера недоступна, пытаюсь подключить...
+[0:00:00.015] ▶ Handshake цикл ПК↔ПЛК запущен
+[0:00:00.015] ▶ Программа запущена. Ctrl+C для выхода.
+[0:00:00.018] 🌐 Веб-сервер: http://localhost:8000
+[0:00:00.032] 📷 JOB#1: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:00:00.045] 📌 JOB#1: ACK отправлен (bStartGrab=1)
+[0:00:00.054] ❌ JOB#1: нет кадра для анализа
+[0:00:00.075] 🏁 JOB#1: завершено (bStartGrab=0)
+[0:00:01.021] STATUS: plcReady=True
+[0:00:01.259]  Камера подключена
+[0:00:02.036] STATUS: plcReady=True
+[0:00:03.047] STATUS: plcReady=True
+[0:00:04.057] STATUS: plcReady=True
+[0:00:05.066] STATUS: plcReady=True
+[0:00:06.076] STATUS: plcReady=True
+[0:00:06.336] ⚠ Камера: не удалось прочитать кадр — переподключаю
+[0:00:07.115] STATUS: plcReady=True
+[0:00:07.365] 🔄 Камера недоступна, переподключаю...
+[0:00:07.377] 🔄 Камера недоступна, пытаюсь подключить...
+[0:00:08.129] STATUS: plcReady=True
+[0:00:08.442]  Камера подключена
+[0:00:09.147] STATUS: plcReady=True
+[0:00:10.154] STATUS: plcReady=True
+[0:00:11.159] STATUS: plcReady=True
+[0:00:12.175] STATUS: plcReady=True
+[0:00:13.190] STATUS: plcReady=True
+[0:00:14.196] STATUS: plcReady=True
+[0:00:14.474] ⚠ Камера: не удалось прочитать кадр — переподключаю
+[0:00:15.213] STATUS: plcReady=True
+[0:00:15.512] 🔄 Камера недоступна, переподключаю...
+[0:00:15.522] 🔄 Камера недоступна, пытаюсь подключить...
+[0:00:16.219] STATUS: plcReady=True
+[0:00:16.596]  Камера подключена
+[0:00:17.232] STATUS: plcReady=True
+[0:00:18.250] STATUS: plcReady=True
+[0:00:19.266] STATUS: plcReady=True
+[0:00:20.314] STATUS: plcReady=True
+[0:00:21.330] STATUS: plcReady=True
+[0:00:22.337] STATUS: plcReady=True
+[0:00:23.344] STATUS: plcReady=True
+[0:00:24.360] STATUS: plcReady=True
+[0:00:25.374] STATUS: plcReady=True
+[0:00:26.392] STATUS: plcReady=True
+[0:00:27.411] STATUS: plcReady=True
+[0:00:28.430] STATUS: plcReady=True
+[0:00:29.444] STATUS: plcReady=True
+[0:00:30.460] STATUS: plcReady=True
+[0:00:31.467] STATUS: plcReady=True
+[0:00:32.484] STATUS: plcReady=True
+[0:00:33.505] STATUS: plcReady=True
+[0:00:34.528] STATUS: plcReady=True
+[0:00:35.535] STATUS: plcReady=True
+[0:00:36.550] STATUS: plcReady=True
+[0:00:37.571] STATUS: plcReady=True
+[0:00:38.578] STATUS: plcReady=True
+[0:00:39.595] STATUS: plcReady=True
+[0:00:40.609] STATUS: plcReady=True
+[0:00:41.627] STATUS: plcReady=True
+[0:00:42.647] STATUS: plcReady=True
+[0:00:43.654] STATUS: plcReady=True
+[0:00:44.669] STATUS: plcReady=True
+[0:00:45.677] STATUS: plcReady=True
+[0:00:46.701] STATUS: plcReady=True
+[0:00:47.719] STATUS: plcReady=True
+[0:00:48.727] STATUS: plcReady=True
+[0:00:49.742] STATUS: plcReady=True
+[0:00:50.758] STATUS: plcReady=True
+[0:00:51.764] STATUS: plcReady=True
+[0:00:52.779] STATUS: plcReady=True
+[0:00:53.795] STATUS: plcReady=True
+[0:00:54.802] STATUS: plcReady=True
+[0:00:55.818] STATUS: plcReady=True
+[0:00:56.842] STATUS: plcReady=True
+[0:00:57.848] STATUS: plcReady=True
+[0:00:58.864] STATUS: plcReady=True
+[0:00:59.868] STATUS: plcReady=True
+[0:01:00.884] STATUS: plcReady=True
+[0:01:01.903] STATUS: plcReady=True
+[0:01:02.909] STATUS: plcReady=True
+[0:01:03.940] STATUS: plcReady=True
+[0:01:04.954] STATUS: plcReady=True
+[0:01:05.972] STATUS: plcReady=True
+[0:01:06.993] STATUS: plcReady=True
+[0:01:08.045] STATUS: plcReady=True
+[0:01:09.068] STATUS: plcReady=True
+[0:01:10.088] STATUS: plcReady=True
+[0:01:11.095] STATUS: plcReady=True
+[0:01:12.122] STATUS: plcReady=True
+[0:01:13.147] STATUS: plcReady=True
+[0:01:14.153] STATUS: plcReady=True
+[0:01:15.174] STATUS: plcReady=True
+[0:01:16.205] STATUS: plcReady=True
+[0:01:17.225] STATUS: plcReady=True
+[0:01:18.234] STATUS: plcReady=True
+[0:01:19.242] STATUS: plcReady=True
+[0:01:20.291] STATUS: plcReady=True
+[0:01:21.297] STATUS: plcReady=True
+[0:01:22.316] STATUS: plcReady=True
+[0:01:23.332] STATUS: plcReady=True
+[0:01:24.382] STATUS: plcReady=True
+[0:01:25.401] STATUS: plcReady=True
+[0:01:26.421] STATUS: plcReady=True
+[0:01:27.442] STATUS: plcReady=True
+[0:01:28.449] STATUS: plcReady=True
+[0:01:29.456] STATUS: plcReady=True
+[0:01:30.466] STATUS: plcReady=True
+[0:01:31.473] STATUS: plcReady=True
+[0:01:32.479] STATUS: plcReady=True
+[0:01:33.485] STATUS: plcReady=True
+[0:01:34.509] STATUS: plcReady=True
+[0:01:35.515] STATUS: plcReady=True
+[0:01:36.534] STATUS: plcReady=True
+[0:01:37.546] STATUS: plcReady=True
+[0:01:38.562] STATUS: plcReady=True
+[0:01:39.581] STATUS: plcReady=True
+[0:01:40.602] STATUS: plcReady=True
+[0:01:41.620] STATUS: plcReady=True
+[0:01:42.637] STATUS: plcReady=True
+[0:01:43.652] STATUS: plcReady=True
+[0:01:44.668] STATUS: plcReady=True
+[0:01:45.684] STATUS: plcReady=True
+[0:01:46.701] STATUS: plcReady=True
+[0:01:47.720] STATUS: plcReady=True
+[0:01:48.737] STATUS: plcReady=True
+[0:01:49.755] STATUS: plcReady=True
+[0:01:50.762] STATUS: plcReady=True
+[0:01:51.767] STATUS: plcReady=True
+[0:01:52.786] STATUS: plcReady=True
+[0:01:53.795] STATUS: plcReady=True
+[0:01:54.814] STATUS: plcReady=True
+[0:01:55.823] STATUS: plcReady=True
+[0:01:56.831] STATUS: plcReady=True
+[0:01:57.847] STATUS: plcReady=True
+[0:01:58.853] STATUS: plcReady=True
+[0:01:59.865] STATUS: plcReady=True
+[0:02:00.883] STATUS: plcReady=True
+[0:02:01.898] STATUS: plcReady=True
+[0:02:02.915] STATUS: plcReady=True
+[0:02:03.932] STATUS: plcReady=True
+[0:02:04.940] STATUS: plcReady=True
+[0:02:05.947] STATUS: plcReady=True
+[0:02:06.953] STATUS: plcReady=True
+[0:02:07.971] STATUS: plcReady=True
+[0:02:08.978] STATUS: plcReady=True
+[0:02:09.998] STATUS: plcReady=True
+[0:02:11.004] STATUS: plcReady=True
+[0:02:12.024] STATUS: plcReady=True
+[0:02:13.041] STATUS: plcReady=True
+[0:02:14.058] STATUS: plcReady=True
+[0:02:15.073] STATUS: plcReady=True
+[0:02:16.080] STATUS: plcReady=True
+[0:02:17.102] STATUS: plcReady=True
+[0:02:18.109] STATUS: plcReady=True
+[0:02:19.119] STATUS: plcReady=True
+[0:02:20.128] STATUS: plcReady=True
+[0:02:21.153] STATUS: plcReady=True
+[0:02:22.169] STATUS: plcReady=True
+[0:02:23.193] STATUS: plcReady=True
+[0:02:24.199] STATUS: plcReady=True
+[0:02:25.220] STATUS: plcReady=True
+[0:02:26.236] STATUS: plcReady=True
+[0:02:27.242] STATUS: plcReady=True
+[0:02:28.259] STATUS: plcReady=True
+[0:02:29.281] STATUS: plcReady=True
+[0:02:30.302] STATUS: plcReady=True
+[0:02:31.319] STATUS: plcReady=True
+[0:02:32.339] STATUS: plcReady=True
+[0:02:33.362] STATUS: plcReady=True
+[0:02:34.381] STATUS: plcReady=True
+[0:02:35.395] STATUS: plcReady=True
+[0:02:36.412] STATUS: plcReady=False
+[0:02:37.421] STATUS: plcReady=False
+[0:02:38.428] STATUS: plcReady=False
+[0:02:39.444] STATUS: plcReady=False
+[0:02:40.469] STATUS: plcReady=False
+[0:02:41.166] 📷 JOB#2: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:02:41.183] 📌 JOB#2: ACK отправлен (bStartGrab=1)
+[0:02:41.210] ✅ JOB#2: результат отправлен в ПЛК iPcResult=1
+[0:02:41.235] 🏁 JOB#2: завершено (bStartGrab=0)
+[0:02:41.273] 📷 JOB#3: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:02:41.287] 📌 JOB#3: ACK отправлен (bStartGrab=1)
+[0:02:41.306] ✅ JOB#3: результат отправлен в ПЛК iPcResult=1
+[0:02:41.321] 🏁 JOB#3: завершено (bStartGrab=0)
+[0:02:41.360] 📷 JOB#4: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:02:41.384] 📌 JOB#4: ACK отправлен (bStartGrab=1)
+[0:02:41.410] ✅ JOB#4: результат отправлен в ПЛК iPcResult=1
+[0:02:41.426] 🏁 JOB#4: завершено (bStartGrab=0)
+[0:02:41.487] STATUS: plcReady=False
+[0:02:42.503] STATUS: plcReady=False
+[0:02:43.521] STATUS: plcReady=False
+[0:02:44.536] STATUS: plcReady=False
+[0:02:45.559] STATUS: plcReady=False
+[0:02:46.170] 📷 JOB#5: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:02:46.185] 📌 JOB#5: ACK отправлен (bStartGrab=1)
+[0:02:46.213] ✅ JOB#5: результат отправлен в ПЛК iPcResult=1
+[0:02:46.226] 🏁 JOB#5: завершено (bStartGrab=0)
+[0:02:46.264] 📷 JOB#6: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:02:46.279] 📌 JOB#6: ACK отправлен (bStartGrab=1)
+[0:02:46.304] ✅ JOB#6: результат отправлен в ПЛК iPcResult=1
+[0:02:46.323] 🏁 JOB#6: завершено (bStartGrab=0)
+[0:02:46.365] 📷 JOB#7: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:02:46.381] 📌 JOB#7: ACK отправлен (bStartGrab=1)
+[0:02:46.412] ✅ JOB#7: результат отправлен в ПЛК iPcResult=1
+[0:02:46.433] 🏁 JOB#7: завершено (bStartGrab=0)
+[0:02:46.575] STATUS: plcReady=False
+[0:02:47.595] STATUS: plcReady=False
+[0:02:48.602] STATUS: plcReady=False
+[0:02:49.618] STATUS: plcReady=False
+[0:02:50.636] STATUS: plcReady=False
+[0:02:51.650] STATUS: plcReady=False
+[0:02:52.665] STATUS: plcReady=False
+[0:02:53.681] STATUS: plcReady=False
+[0:02:54.701] STATUS: plcReady=False
+[0:02:55.716] STATUS: plcReady=False
+[0:02:56.733] STATUS: plcReady=False
+[0:02:57.750] STATUS: plcReady=False
+[0:02:58.755] STATUS: plcReady=False
+[0:02:59.808] STATUS: plcReady=False
+[0:03:00.821] STATUS: plcReady=False
+[0:03:01.836] STATUS: plcReady=False
+[0:03:02.846] STATUS: plcReady=False
+[0:03:03.888] STATUS: plcReady=False
+[0:03:04.905] STATUS: plcReady=False
+[0:03:05.911] STATUS: plcReady=False
+[0:03:06.926] STATUS: plcReady=False
+[0:03:07.986] STATUS: plcReady=False
+[0:03:08.994] STATUS: plcReady=False
+[0:03:10.001] STATUS: plcReady=False
+[0:03:11.016] STATUS: plcReady=False
+[0:03:12.036] STATUS: plcReady=False
+[0:03:13.050] STATUS: plcReady=False
+[0:03:14.065] STATUS: plcReady=False
+[0:03:14.941] 📷 JOB#8: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:14.956] 📌 JOB#8: ACK отправлен (bStartGrab=1)
+[0:03:14.978] ✅ JOB#8: результат отправлен в ПЛК iPcResult=1
+[0:03:14.993] 🏁 JOB#8: завершено (bStartGrab=0)
+[0:03:15.040] 📷 JOB#9: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:15.055] 📌 JOB#9: ACK отправлен (bStartGrab=1)
+[0:03:15.082] STATUS: plcReady=True
+[0:03:15.091] ✅ JOB#9: результат отправлен в ПЛК iPcResult=1
+[0:03:15.103] 🏁 JOB#9: завершено (bStartGrab=0)
+[0:03:15.516] 📷 JOB#10: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:15.533] 📌 JOB#10: ACK отправлен (bStartGrab=1)
+[0:03:15.559] ✅ JOB#10: результат отправлен в ПЛК iPcResult=1
+[0:03:15.573] 🏁 JOB#10: завершено (bStartGrab=0)
+[0:03:16.089] STATUS: plcReady=True
+[0:03:16.097] 📷 JOB#11: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:16.111] 📌 JOB#11: ACK отправлен (bStartGrab=1)
+[0:03:16.132] ✅ JOB#11: результат отправлен в ПЛК iPcResult=1
+[0:03:16.148] 🏁 JOB#11: завершено (bStartGrab=0)
+[0:03:16.185] 📷 JOB#12: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:16.200] 📌 JOB#12: ACK отправлен (bStartGrab=1)
+[0:03:16.230] ✅ JOB#12: результат отправлен в ПЛК iPcResult=1
+[0:03:16.243] 🏁 JOB#12: завершено (bStartGrab=0)
+[0:03:17.095] STATUS: plcReady=False
+[0:03:18.111] STATUS: plcReady=False
+[0:03:18.417] 📷 JOB#13: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:18.432] 📌 JOB#13: ACK отправлен (bStartGrab=1)
+[0:03:18.454] ✅ JOB#13: результат отправлен в ПЛК iPcResult=1
+[0:03:18.473] 🏁 JOB#13: завершено (bStartGrab=0)
+[0:03:18.513] 📷 JOB#14: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:18.534] 📌 JOB#14: ACK отправлен (bStartGrab=1)
+[0:03:18.568] ✅ JOB#14: результат отправлен в ПЛК iPcResult=1
+[0:03:18.580] 🏁 JOB#14: завершено (bStartGrab=0)
+[0:03:18.618] 📷 JOB#15: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:18.632] 📌 JOB#15: ACK отправлен (bStartGrab=1)
+[0:03:18.650] ✅ JOB#15: результат отправлен в ПЛК iPcResult=1
+[0:03:18.664] 🏁 JOB#15: завершено (bStartGrab=0)
+[0:03:18.710] 📷 JOB#16: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:18.724] 📌 JOB#16: ACK отправлен (bStartGrab=1)
+[0:03:18.745] ✅ JOB#16: результат отправлен в ПЛК iPcResult=1
+[0:03:18.768] 🏁 JOB#16: завершено (bStartGrab=0)
+[0:03:18.808] 📷 JOB#17: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:18.824] 📌 JOB#17: ACK отправлен (bStartGrab=1)
+[0:03:18.845] ✅ JOB#17: результат отправлен в ПЛК iPcResult=1
+[0:03:18.860] 🏁 JOB#17: завершено (bStartGrab=0)
+[0:03:18.903] 📷 JOB#18: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:18.925] 📌 JOB#18: ACK отправлен (bStartGrab=1)
+[0:03:18.947] ✅ JOB#18: результат отправлен в ПЛК iPcResult=1
+[0:03:18.964] 🏁 JOB#18: завершено (bStartGrab=0)
+[0:03:19.012] 📷 JOB#19: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.029] 📌 JOB#19: ACK отправлен (bStartGrab=1)
+[0:03:19.054] ✅ JOB#19: результат отправлен в ПЛК iPcResult=1
+[0:03:19.068] 🏁 JOB#19: завершено (bStartGrab=0)
+[0:03:19.107] 📷 JOB#20: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.124] 📌 JOB#20: ACK отправлен (bStartGrab=1)
+[0:03:19.130] STATUS: plcReady=True
+[0:03:19.137] ✅ JOB#20: результат отправлен в ПЛК iPcResult=1
+[0:03:19.150] 🏁 JOB#20: завершено (bStartGrab=0)
+[0:03:19.188] 📷 JOB#21: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.200] 📌 JOB#21: ACK отправлен (bStartGrab=1)
+[0:03:19.254] ✅ JOB#21: результат отправлен в ПЛК iPcResult=1
+[0:03:19.268] 🏁 JOB#21: завершено (bStartGrab=0)
+[0:03:19.308] 📷 JOB#22: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.326] 📌 JOB#22: ACK отправлен (bStartGrab=1)
+[0:03:19.345] ✅ JOB#22: результат отправлен в ПЛК iPcResult=1
+[0:03:19.360] 🏁 JOB#22: завершено (bStartGrab=0)
+[0:03:19.398] 📷 JOB#23: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.413] 📌 JOB#23: ACK отправлен (bStartGrab=1)
+[0:03:19.433] ✅ JOB#23: результат отправлен в ПЛК iPcResult=1
+[0:03:19.445] 🏁 JOB#23: завершено (bStartGrab=0)
+[0:03:19.488] 📷 JOB#24: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.502] 📌 JOB#24: ACK отправлен (bStartGrab=1)
+[0:03:19.531] ✅ JOB#24: результат отправлен в ПЛК iPcResult=1
+[0:03:19.546] 🏁 JOB#24: завершено (bStartGrab=0)
+[0:03:19.590] 📷 JOB#25: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.604] 📌 JOB#25: ACK отправлен (bStartGrab=1)
+[0:03:19.631] ✅ JOB#25: результат отправлен в ПЛК iPcResult=1
+[0:03:19.645] 🏁 JOB#25: завершено (bStartGrab=0)
+[0:03:19.683] 📷 JOB#26: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.698] 📌 JOB#26: ACK отправлен (bStartGrab=1)
+[0:03:19.719] ✅ JOB#26: результат отправлен в ПЛК iPcResult=1
+[0:03:19.736] 🏁 JOB#26: завершено (bStartGrab=0)
+[0:03:19.776] 📷 JOB#27: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.797] 📌 JOB#27: ACK отправлен (bStartGrab=1)
+[0:03:19.814] ✅ JOB#27: результат отправлен в ПЛК iPcResult=1
+[0:03:19.828] 🏁 JOB#27: завершено (bStartGrab=0)
+[0:03:19.870] 📷 JOB#28: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.885] 📌 JOB#28: ACK отправлен (bStartGrab=1)
+[0:03:19.907] ✅ JOB#28: результат отправлен в ПЛК iPcResult=1
+[0:03:19.931] 🏁 JOB#28: завершено (bStartGrab=0)
+[0:03:19.973] 📷 JOB#29: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:19.988] 📌 JOB#29: ACK отправлен (bStartGrab=1)
+[0:03:20.015] ✅ JOB#29: результат отправлен в ПЛК iPcResult=1
+[0:03:20.028] 🏁 JOB#29: завершено (bStartGrab=0)
+[0:03:20.137] 📷 JOB#30: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:20.142] STATUS: plcReady=True
+[0:03:20.148] 📌 JOB#30: ACK отправлен (bStartGrab=1)
+[0:03:20.168] ✅ JOB#30: результат отправлен в ПЛК iPcResult=1
+[0:03:20.183] 🏁 JOB#30: завершено (bStartGrab=0)
+[0:03:20.227] 📷 JOB#31: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:20.240] 📌 JOB#31: ACK отправлен (bStartGrab=1)
+[0:03:20.260] ✅ JOB#31: результат отправлен в ПЛК iPcResult=1
+[0:03:20.273] 🏁 JOB#31: завершено (bStartGrab=0)
+[0:03:21.154] STATUS: plcReady=False
+[0:03:22.171] STATUS: plcReady=False
+[0:03:23.187] STATUS: plcReady=False
+[0:03:24.207] STATUS: plcReady=False
+[0:03:25.225] STATUS: plcReady=False
+[0:03:26.240] STATUS: plcReady=False
+[0:03:27.255] STATUS: plcReady=False
+[0:03:28.275] STATUS: plcReady=False
+[0:03:29.290] STATUS: plcReady=False
+[0:03:30.298] STATUS: plcReady=False
+[0:03:31.307] STATUS: plcReady=False
+[0:03:32.069] 📷 JOB#32: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:32.099] 📌 JOB#32: ACK отправлен (bStartGrab=1)
+[0:03:32.118] ✅ JOB#32: результат отправлен в ПЛК iPcResult=1
+[0:03:32.132] 🏁 JOB#32: завершено (bStartGrab=0)
+[0:03:32.195] 📷 JOB#33: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:32.211] 📌 JOB#33: ACK отправлен (bStartGrab=1)
+[0:03:32.229] ✅ JOB#33: результат отправлен в ПЛК iPcResult=1
+[0:03:32.242] 🏁 JOB#33: завершено (bStartGrab=0)
+[0:03:32.325] STATUS: plcReady=False
+[0:03:33.340] STATUS: plcReady=False
+[0:03:34.360] STATUS: plcReady=False
+[0:03:35.367] STATUS: plcReady=False
+[0:03:36.385] STATUS: plcReady=False
+[0:03:37.395] STATUS: plcReady=False
+[0:03:38.411] STATUS: plcReady=False
+[0:03:39.428] STATUS: plcReady=False
+[0:03:40.445] STATUS: plcReady=False
+[0:03:41.463] STATUS: plcReady=False
+[0:03:42.469] STATUS: plcReady=False
+[0:03:43.487] STATUS: plcReady=False
+[0:03:44.503] STATUS: plcReady=False
+[0:03:45.523] STATUS: plcReady=False
+[0:03:46.544] STATUS: plcReady=False
+[0:03:47.551] STATUS: plcReady=False
+[0:03:48.562] STATUS: plcReady=False
+[0:03:49.583] STATUS: plcReady=False
+[0:03:50.592] STATUS: plcReady=False
+[0:03:51.609] STATUS: plcReady=False
+[0:03:52.622] STATUS: plcReady=False
+[0:03:53.114] 📷 JOB#34: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:53.132] 📌 JOB#34: ACK отправлен (bStartGrab=1)
+[0:03:53.163] ✅ JOB#34: результат отправлен в ПЛК iPcResult=1
+[0:03:53.176] 🏁 JOB#34: завершено (bStartGrab=0)
+[0:03:53.215] 📷 JOB#35: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:03:53.228] 📌 JOB#35: ACK отправлен (bStartGrab=1)
+[0:03:53.248] ✅ JOB#35: результат отправлен в ПЛК iPcResult=1
+[0:03:53.266] 🏁 JOB#35: завершено (bStartGrab=0)
+[0:03:53.633] STATUS: plcReady=False
+[0:03:54.655] STATUS: plcReady=False
+[0:03:55.692] STATUS: plcReady=False
+[0:03:56.710] STATUS: plcReady=False
+[0:03:57.757] STATUS: plcReady=False
+[0:03:58.770] STATUS: plcReady=False
+[0:03:59.779] STATUS: plcReady=False
+[0:04:00.794] STATUS: plcReady=False
+[0:04:01.807] STATUS: plcReady=False
+[0:04:02.814] STATUS: plcReady=False
+[0:04:03.866] STATUS: plcReady=False
+[0:04:04.880] STATUS: plcReady=False
+[0:04:05.898] STATUS: plcReady=False
+[0:04:06.917] STATUS: plcReady=False
+[0:04:07.649] 📷 JOB#36: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:04:07.662] 📌 JOB#36: ACK отправлен (bStartGrab=1)
+[0:04:07.681] ✅ JOB#36: результат отправлен в ПЛК iPcResult=1
+[0:04:07.701] 🏁 JOB#36: завершено (bStartGrab=0)
+[0:04:07.739] 📷 JOB#37: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:04:07.757] 📌 JOB#37: ACK отправлен (bStartGrab=1)
+[0:04:07.780] ✅ JOB#37: результат отправлен в ПЛК iPcResult=1
+[0:04:07.794] 🏁 JOB#37: завершено (bStartGrab=0)
+[0:04:07.968] STATUS: plcReady=False
+[0:04:08.984] STATUS: plcReady=False
+[0:04:10.006] STATUS: plcReady=False
+[0:04:11.022] STATUS: plcReady=False
+[0:04:12.046] STATUS: plcReady=False
+[0:04:13.062] STATUS: plcReady=False
+[0:04:14.080] STATUS: plcReady=False
+[0:04:15.097] STATUS: plcReady=False
+[0:04:16.180] STATUS: plcReady=False
+[0:04:17.192] STATUS: plcReady=False
+[0:04:18.209] STATUS: plcReady=False
+[0:04:18.413] 📷 JOB#38: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:04:18.431] 📌 JOB#38: ACK отправлен (bStartGrab=1)
+[0:04:18.451] ✅ JOB#38: результат отправлен в ПЛК iPcResult=1
+[0:04:18.466] 🏁 JOB#38: завершено (bStartGrab=0)
+[0:04:18.503] 📷 JOB#39: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:04:18.518] 📌 JOB#39: ACK отправлен (bStartGrab=1)
+[0:04:18.546] ✅ JOB#39: результат отправлен в ПЛК iPcResult=1
+[0:04:18.561] 🏁 JOB#39: завершено (bStartGrab=0)
+[0:04:19.226] STATUS: plcReady=False
+[0:04:20.247] STATUS: plcReady=False
+[0:04:21.266] STATUS: plcReady=False
+[0:04:22.272] STATUS: plcReady=False
+[0:04:23.278] STATUS: plcReady=False
+[0:04:24.321] STATUS: plcReady=False
+[0:04:25.327] STATUS: plcReady=False
+[0:04:26.354] STATUS: plcReady=False
+[0:04:27.361] STATUS: plcReady=False
+[0:04:28.377] STATUS: plcReady=False
+[0:04:29.398] STATUS: plcReady=False
+[0:04:30.418] STATUS: plcReady=False
+[0:04:31.425] STATUS: plcReady=False
+[0:04:32.438] STATUS: plcReady=False
+[0:04:33.456] STATUS: plcReady=False
+[0:04:34.061] 📷 JOB#40: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:04:34.076] 📌 JOB#40: ACK отправлен (bStartGrab=1)
+[0:04:34.100] ✅ JOB#40: результат отправлен в ПЛК iPcResult=1
+[0:04:34.120] 🏁 JOB#40: завершено (bStartGrab=0)
+[0:04:34.166] 📷 JOB#41: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:04:34.180] 📌 JOB#41: ACK отправлен (bStartGrab=1)
+[0:04:34.206] ✅ JOB#41: результат отправлен в ПЛК iPcResult=1
+[0:04:34.223] 🏁 JOB#41: завершено (bStartGrab=0)
+[0:04:34.465] STATUS: plcReady=False
+[0:04:35.484] STATUS: plcReady=False
+[0:04:36.499] STATUS: plcReady=False
+[0:04:37.516] STATUS: plcReady=False
+[0:04:38.538] STATUS: plcReady=False
+[0:04:39.558] STATUS: plcReady=False
+[0:04:40.581] STATUS: plcReady=False
+[0:04:41.599] STATUS: plcReady=False
+[0:04:42.625] STATUS: plcReady=False
+[0:04:43.640] STATUS: plcReady=False
+[0:04:44.647] STATUS: plcReady=False
+[0:04:45.662] STATUS: plcReady=False
+[0:04:46.678] STATUS: plcReady=False
+[0:04:47.685] STATUS: plcReady=False
+[0:04:48.706] STATUS: plcReady=False
+[0:04:49.723] STATUS: plcReady=False
+[0:04:50.739] STATUS: plcReady=False
+[0:04:51.758] STATUS: plcReady=False
+[0:04:52.775] STATUS: plcReady=False
+[0:04:53.781] STATUS: plcReady=False
+[0:04:54.806] STATUS: plcReady=False
+[0:04:55.815] STATUS: plcReady=False
+[0:04:56.822] STATUS: plcReady=False
+[0:04:57.835] STATUS: plcReady=False
+[0:04:58.854] STATUS: plcReady=False
+[0:04:59.861] STATUS: plcReady=False
+[0:05:00.867] STATUS: plcReady=False
+[0:05:01.884] STATUS: plcReady=False
+[0:05:02.907] STATUS: plcReady=False
+[0:05:03.920] STATUS: plcReady=False
+[0:05:04.935] STATUS: plcReady=False
+[0:05:05.951] STATUS: plcReady=False
+[0:05:06.966] STATUS: plcReady=False
+[0:05:07.984] STATUS: plcReady=False
+[0:05:09.000] STATUS: plcReady=False
+[0:05:10.031] STATUS: plcReady=False
+[0:05:11.050] STATUS: plcReady=False
+[0:05:12.059] STATUS: plcReady=False
+[0:05:13.067] STATUS: plcReady=False
+[0:05:14.077] STATUS: plcReady=False
+[0:05:15.088] STATUS: plcReady=False
+[0:05:16.095] STATUS: plcReady=False
+[0:05:17.118] STATUS: plcReady=False
+[0:05:18.137] STATUS: plcReady=False
+[0:05:19.152] STATUS: plcReady=False
+[0:05:20.159] STATUS: plcReady=False
+[0:05:21.176] STATUS: plcReady=False
+[0:05:22.186] STATUS: plcReady=False
+[0:05:23.200] STATUS: plcReady=False
+[0:05:24.224] STATUS: plcReady=False
+[0:05:25.243] STATUS: plcReady=False
+[0:05:26.258] STATUS: plcReady=False
+[0:05:26.527] 📷 JOB#42: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:26.542] 📌 JOB#42: ACK отправлен (bStartGrab=1)
+[0:05:26.565] ✅ JOB#42: результат отправлен в ПЛК iPcResult=1
+[0:05:26.581] 🏁 JOB#42: завершено (bStartGrab=0)
+[0:05:26.621] 📷 JOB#43: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:26.636] 📌 JOB#43: ACK отправлен (bStartGrab=1)
+[0:05:26.662] ✅ JOB#43: результат отправлен в ПЛК iPcResult=1
+[0:05:26.676] 🏁 JOB#43: завершено (bStartGrab=0)
+[0:05:26.727] 📷 JOB#44: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:26.742] 📌 JOB#44: ACK отправлен (bStartGrab=1)
+[0:05:26.764] ✅ JOB#44: результат отправлен в ПЛК iPcResult=1
+[0:05:26.780] 🏁 JOB#44: завершено (bStartGrab=0)
+[0:05:27.281] STATUS: plcReady=False
+[0:05:28.287] STATUS: plcReady=False
+[0:05:28.598] 📷 JOB#45: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:28.624] 📌 JOB#45: ACK отправлен (bStartGrab=1)
+[0:05:28.645] ✅ JOB#45: результат отправлен в ПЛК iPcResult=1
+[0:05:28.659] 🏁 JOB#45: завершено (bStartGrab=0)
+[0:05:28.701] 📷 JOB#46: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:28.719] 📌 JOB#46: ACK отправлен (bStartGrab=1)
+[0:05:28.747] ✅ JOB#46: результат отправлен в ПЛК iPcResult=1
+[0:05:28.762] 🏁 JOB#46: завершено (bStartGrab=0)
+[0:05:28.808] 📷 JOB#47: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:28.822] 📌 JOB#47: ACK отправлен (bStartGrab=1)
+[0:05:28.849] ✅ JOB#47: результат отправлен в ПЛК iPcResult=1
+[0:05:28.863] 🏁 JOB#47: завершено (bStartGrab=0)
+[0:05:28.900] 📷 JOB#48: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:28.914] 📌 JOB#48: ACK отправлен (bStartGrab=1)
+[0:05:28.941] ✅ JOB#48: результат отправлен в ПЛК iPcResult=1
+[0:05:28.954] 🏁 JOB#48: завершено (bStartGrab=0)
+[0:05:28.995] 📷 JOB#49: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.019] 📌 JOB#49: ACK отправлен (bStartGrab=1)
+[0:05:29.041] ✅ JOB#49: результат отправлен в ПЛК iPcResult=1
+[0:05:29.055] 🏁 JOB#49: завершено (bStartGrab=0)
+[0:05:29.101] 📷 JOB#50: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.116] 📌 JOB#50: ACK отправлен (bStartGrab=1)
+[0:05:29.145] ✅ JOB#50: результат отправлен в ПЛК iPcResult=1
+[0:05:29.161] 🏁 JOB#50: завершено (bStartGrab=0)
+[0:05:29.211] 📷 JOB#51: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.225] 📌 JOB#51: ACK отправлен (bStartGrab=1)
+[0:05:29.245] ✅ JOB#51: результат отправлен в ПЛК iPcResult=1
+[0:05:29.259] 🏁 JOB#51: завершено (bStartGrab=0)
+[0:05:29.301] 📷 JOB#52: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.306] STATUS: plcReady=True
+[0:05:29.310] 📌 JOB#52: ACK отправлен (bStartGrab=1)
+[0:05:29.338] ✅ JOB#52: результат отправлен в ПЛК iPcResult=1
+[0:05:29.355] 🏁 JOB#52: завершено (bStartGrab=0)
+[0:05:29.396] 📷 JOB#53: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.418] 📌 JOB#53: ACK отправлен (bStartGrab=1)
+[0:05:29.443] ✅ JOB#53: результат отправлен в ПЛК iPcResult=1
+[0:05:29.458] 🏁 JOB#53: завершено (bStartGrab=0)
+[0:05:29.506] 📷 JOB#54: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.521] 📌 JOB#54: ACK отправлен (bStartGrab=1)
+[0:05:29.550] ✅ JOB#54: результат отправлен в ПЛК iPcResult=1
+[0:05:29.566] 🏁 JOB#54: завершено (bStartGrab=0)
+[0:05:29.620] 📷 JOB#55: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.636] 📌 JOB#55: ACK отправлен (bStartGrab=1)
+[0:05:29.656] ✅ JOB#55: результат отправлен в ПЛК iPcResult=1
+[0:05:29.677] 🏁 JOB#55: завершено (bStartGrab=0)
+[0:05:29.718] 📷 JOB#56: получен запрос от ПЛК (bNewProduct=1, bPlcReady=1)
+[0:05:29.735] 📌 JOB#56: ACK отправлен (bStartGrab=1)
+[0:05:29.769] ✅ JOB#56: результат отправлен в ПЛК iPcResult=1
+[0:05:29.783] 🏁 JOB#56: завершено (bStartGrab=0)
+[0:05:30.313] STATUS: plcReady=False
+[0:05:31.327] STATUS: plcReady=False
+[0:05:32.346] STATUS: plcReady=False
+[0:05:33.362] STATUS: plcReady=False
+[0:05:34.384] STATUS: plcReady=False
+[0:05:35.399] STATUS: plcReady=False
+[0:05:36.416] STATUS: plcReady=False
+[0:05:37.437] STATUS: plcReady=False
+[0:05:38.448] STATUS: plcReady=False
+[0:05:39.464] STATUS: plcReady=False
+[0:05:40.478] STATUS: plcReady=False
+[0:05:41.494] STATUS: plcReady=False
+[0:05:42.534] STATUS: plcReady=False
+[0:05:43.560] STATUS: plcReady=False
+[0:05:44.589] STATUS: plcReady=False
+[0:05:45.613] STATUS: plcReady=False
+[0:05:46.619] STATUS: plcReady=False
+[0:05:47.633] STATUS: plcReady=False
+[0:05:48.638] STATUS: plcReady=False
+[0:05:49.647] STATUS: plcReady=False
+[0:05:50.655] STATUS: plcReady=False
+[0:05:51.683] STATUS: plcReady=False
+[0:05:52.700] STATUS: plcReady=False
+[0:05:53.718] STATUS: plcReady=False
+[0:05:54.737] STATUS: plcReady=False
+[0:05:55.746] STATUS: plcReady=False
+[0:05:56.763] STATUS: plcReady=False
+[0:05:57.781] STATUS: plcReady=False
+[0:05:58.796] STATUS: plcReady=False
+[0:05:59.803] STATUS: plcReady=False
+[0:06:00.823] STATUS: plcReady=False
+[0:06:01.842] STATUS: plcReady=False
+[0:06:02.860] STATUS: plcReady=False
+[0:06:03.875] STATUS: plcReady=False
+[0:06:04.896] STATUS: plcReady=False
+[0:06:05.913] STATUS: plcReady=False
+[0:06:06.919] STATUS: plcReady=False

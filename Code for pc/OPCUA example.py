@@ -1,24 +1,40 @@
 from opcua import Client
 from opcua import ua
-import sys
-import numpy as np
-import cv2 as cv
+import time
 
-hsv_min = np.array((0, 54, 5), np.uint8)
-hsv_max = np.array((187, 255, 253), np.uint8)
 
-url = "opc.tcp://172.16.3.186:4840"  # Адрес ПЛК
-client = Client(url)#
+
+i = -10
+qwe = False
+client = Client("opc.tcp://172.16.3.186:4840")#
+
 try:
     client.connect()
-    print("Подключено к ПЛК")
+    xPartAtCamera_node = client.get_node("ns=4;s=|var|PLC210 OPC-UA.Application.PLC_PRG.xPartAtCamera")
+    chislo_node = client.get_node("ns=4;s=|var|PLC210 OPC-UA.Application.PLC_PRG.chislo")
+
+    print("Цикл запущен")
+
+    while True:
+        # 1. Читаем ОДИН раз за итерацию
+        current_status = xPartAtCamera_node.get_value()
+
+        # 2. Логика "переднего фронта" (сработал датчик)
+        if current_status and not qwe:
+            i += 1
+            # Записываем значение
+            new_setpoint = ua.DataValue(ua.Variant(float(i), ua.VariantType.Float))
+            chislo_node.set_value(new_setpoint)
+            print(f"Сработала вспышка! Число: {i}")
+
+        # 3. Запоминаем состояние для следующего шага
+        qwe = current_status
+
+        # 4. ОБЯЗАТЕЛЬНО: даем процессору и сети "подышать"
+        # 0.01 сек (10 мс) достаточно, чтобы цикл летал и не тормозил ПЛК
+        time.sleep(0.01)
+
+except Exception as e:
+    print(f"Ошибка: {e}")
 finally:
-    temp_node = client.get_node("ns=4;s=|var|PLC210 OPC-UA.Application.PLC_PRG.temp") #обозначение переменной в питоне (получение узлов node переменных)
-    temp = temp_node.get_value() #чтение значения с ПЛК
-    print(f"Temeratura: {temp}")
-
-    new_setpoint = ua.DataValue(ua.Variant(73, ua.VariantType.Float)) #создание переменной особого типа для записи в ПЛК
-    temp_node.set_value(new_setpoint) # запись в ПЛК
-
     client.disconnect()
-    print("Отключено от ПЛК")
