@@ -6,7 +6,7 @@ import os
 # === Глобальные константы ===
 color_red = (0, 0, 255)     # Красный цвет для отметки ошибок
 color_green = (0, 255, 0)   # Зелёный цвет для выделения зон 
-image_folder = "C:/Users/admin/Documents/foto1080/"  # Путь к изображениям
+image_folder = "C:/Users/L13 Yoga/Documents/foto1080/"  # Путь к изображениям
 max_images = 999  # Максимальное количество изображений для перебора
 PORT = 8000           # порт сервера (http://localhost:8000)
 CAM_INDEX = 0         # 0 — первая камера, 1 — вторая и т.д.
